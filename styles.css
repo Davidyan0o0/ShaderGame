@@ -3,16 +3,14 @@
 html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; line-height: 1.6; }
 a { color: inherit; text-decoration: none; }
-a:focus-visible { outline: 3px solid #6554a7; outline-offset: 6px; }
+a:focus-visible, summary:focus-visible { outline: 3px solid #6554a7; outline-offset: 6px; }
 a:hover { text-decoration: underline; text-underline-offset: 5px; }
 .wrap { width: min(1180px, calc(100% - 96px)); margin-inline: auto; }
 .skip-link { position: absolute; top: -80px; left: 16px; padding: 10px 20px; background: var(--ink); color: white; z-index: 10; }
 .skip-link:focus { top: 12px; }
 .site-header { display: flex; justify-content: space-between; align-items: center; min-height: 112px; border-bottom: 1px solid var(--line); gap: 24px; }
-.brand { display: flex; align-items: center; gap: 12px; font-size: 23px; font-weight: 700; letter-spacing: -1px; }
-.brand-mark { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: var(--ink); color: var(--paper); font: 22px Georgia, serif; letter-spacing: -4px; padding-right: 4px; }
-.brand-mark span { color: var(--green); }
-.brand-type { align-self: flex-end; margin: 0 0 7px 10px; font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+.brand, .footer-brand { display: inline-flex; flex-shrink: 0; }
+.brand-logo { display: block; width: 100px; height: auto; }
 nav { display: flex; gap: 30px; font-size: 13px; }
 .hero { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; padding-block: 100px 108px; }
 .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; margin: 0 0 30px; }
@@ -40,6 +38,33 @@ h2 { font-size: clamp(42px, 5vw, 64px); font-weight: 500; line-height: 1.1; lett
 h3 { font-weight: 500; font-size: 30px; line-height: 1.25; letter-spacing: -1px; margin-block: 25px 18px; }
 .game-copy p { max-width: 440px; font-size: 14px; }
 .text-link { display: inline-flex; gap: 35px; border-bottom: 1px solid var(--ink); padding-block: 12px 6px; font-size: 13px; }
+.game-facts { display: flex; flex-wrap: wrap; gap: 8px; max-width: 390px; margin-top: 28px; }
+.game-facts span { border: 1px solid #8d9f72; padding: 5px 10px; font-size: 11px; }
+.modes-section, .experience-section, .faq-section { padding-block: 80px; border-bottom: 1px solid var(--line); }
+.section-heading { display: grid; grid-template-columns: 1.3fr 1fr; gap: 70px; align-items: end; margin-bottom: 42px; }
+.section-heading .eyebrow { margin-bottom: 22px; }
+.section-heading h2 { font-size: clamp(38px, 4.5vw, 56px); }
+.section-heading > p { max-width: 380px; margin: 0; }
+.mode-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); }
+.mode-card { padding: 30px; }
+.mode-card + .mode-card { border-left: 1px solid var(--line); }
+.mode-card:nth-child(2) { background: var(--purple); }
+.mode-number { font-size: 10px; letter-spacing: 1.5px; }
+.mode-card h3 { font-size: 26px; }
+.mode-card p, .play-steps p, .experience-grid p, .faq-list p { font-size: 14px; }
+.mode-card .mode-note { margin-top: 24px; font-size: 12px; color: #54554d; }
+.play-section { padding-block: 80px; background: var(--purple); border-block: 1px solid #cbc6e0; }
+.play-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; padding: 0; margin: 0; list-style: none; counter-reset: steps; }
+.play-steps li { counter-increment: steps; border-top: 1px solid #aaa3c4; padding-top: 22px; }
+.play-steps li::before { content: "0" counter(steps); font: italic 36px Georgia, serif; }
+.play-steps h3, .experience-grid h3 { font-size: 24px; margin-top: 18px; }
+.experience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; }
+.experience-grid article { border-top: 1px solid var(--line); padding-top: 10px; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-list details { border-bottom: 1px solid var(--line); padding: 20px 0; }
+.faq-list summary { cursor: pointer; font-size: 17px; font-weight: 500; }
+.faq-list p { max-width: 850px; color: var(--muted); margin-bottom: 0; }
+.faq-list a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 .studio-section { padding-block: 85px; border-bottom: 1px solid var(--line); }
 .studio-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; }
 .studio-statement { font-size: 23px; line-height: 1.55; margin-top: 0; }
@@ -51,7 +76,7 @@ h3 { font-weight: 500; font-size: 30px; line-height: 1.25; letter-spacing: -1px;
 .contact-email { font-size: clamp(18px, 2.5vw, 30px); letter-spacing: -0.5px; border-bottom: 1px solid var(--ink); padding-bottom: 6px; overflow-wrap: anywhere; }
 .contact-email span { margin-left: 18px; }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding-block: 25px; font-size: 12px; color: var(--muted); }
-.footer-brand { color: var(--ink); font-weight: 700; font-size: 17px; letter-spacing: -0.6px; }
+.footer-brand .brand-logo { width: 80px; }
 .policy { max-width: 800px; margin-inline: auto; padding-block: 65px 90px; }
 .policy h1 { font-size: clamp(40px, 6vw, 64px); letter-spacing: -2px; }
 .policy-intro { border-bottom: 1px solid var(--line); padding-bottom: 25px; margin-bottom: 35px; }
@@ -67,17 +92,19 @@ th { background: var(--purple); }
 @media (min-width: 1600px) { .hero { padding-block: 125px; } }
 @media (max-width: 900px) {
   .wrap { width: calc(100% - 48px); }
-  .brand-type { display: none; }
   .hero { gap: 32px; padding-block: 70px; }
   h1 { letter-spacing: -2px; }
   .hero-art { padding: 26px 18px; }
   .art-label { font-size: 8px; letter-spacing: 0.7px; }
   .game-layout, .studio-layout { gap: 40px; }
+  .section-heading { gap: 40px; }
+  .mode-card { padding: 22px; }
+  .experience-grid { gap: 40px; }
 }
 @media (max-width: 640px) {
   .site-header { min-height: 90px; flex-wrap: wrap; padding-block: 20px; gap: 15px; }
-  .brand { font-size: 21px; }
-  nav { gap: 22px; font-size: 12px; }
+  .brand-logo { width: 80px; }
+  nav { flex-wrap: wrap; gap: 12px 20px; font-size: 12px; }
   .hero { grid-template-columns: 1fr; gap: 52px; padding-block: 52px 60px; }
   h1 { font-size: clamp(43px, 10vw, 64px); }
   .hero-description { font-size: 15px; }
@@ -87,6 +114,14 @@ th { background: var(--purple); }
   .game-section { padding-block: 48px; }
   .game-layout h2 { margin-top: 20px; }
   .game-copy { border-top: 1px solid #aabf8a; padding-top: 28px; }
+  .modes-section, .experience-section, .faq-section, .play-section { padding-block: 50px; }
+  .section-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 30px; }
+  .mode-grid, .play-steps, .experience-grid { grid-template-columns: 1fr; gap: 0; }
+  .mode-card { padding: 28px; }
+  .mode-card + .mode-card { border-left: 0; border-top: 1px solid var(--line); }
+  .play-steps { gap: 24px; }
+  .experience-grid { gap: 24px; }
+  .faq-list summary { font-size: 16px; }
   .studio-section { padding-block: 55px; }
   .studio-statement { font-size: 20px; }
   .contact-section { display: block; padding-block: 50px; }
